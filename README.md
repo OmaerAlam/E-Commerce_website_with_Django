@@ -39,7 +39,7 @@ BillingInfo_Page
 ![image](https://github.com/user-attachments/assets/5331522d-4653-49ef-b8df-187cef376c96)
 
 Shipped_Items_page(Only Admin)
-![image](https://github.com/user-attachments/assets/0981de7b-4701-4649-a4f6-bf69fab07cba)
+![image](https://github.com/user-attachments/assets/255b1394-3312-426b-b26f-62476da13d6a)
 
 Unshipped_Items_Page(Only Admin)
 ![image](https://github.com/user-attachments/assets/1bc1864c-49e1-4f1c-9ab2-1558a7f1c19a)
