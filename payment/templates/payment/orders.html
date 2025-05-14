@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-10 col-sm-12">
+
+            <!-- Order Card -->
+            <div class="card mb-4 shadow-sm">
+                <div class="card-header bg-dark text-white">
+                    <h5>Order #{{ order.id }} - Tk {{ order.amountPaid }}</h5>
+                </div>
+                <div class="card-body">
+                    <p><strong>Email:</strong> {{ order.email }}</p>
+
+                    {% if order.dateShipped %}
+                        <p><strong>Date Shipped:</strong> {{ order.dateShipped }}</p>
+                    {% else %}
+                        <p><strong>Date Ordered:</strong> {{ order.dateOrdered }}</p>
+                    {% endif %}
+
+                    <p><strong>Shipping Info:</strong></p>
+                    <p>{{ order.fullName }}</p>
+                    <pre>{{ order.shippingAddress }}</pre>
+
+                    <h5 class="mt-4">Ordered Items:</h5>
+                    {% for item in items %}
+                        <div class="border rounded p-2 mb-2">
+                            <p class="mb-1"><strong>Product:</strong> {{ item.product.name }}</p>
+                            <p class="mb-1"><strong>Quantity:</strong> {{ item.quantity }}</p>
+                            <p class="mb-0"><strong>Price:</strong> Tk {{ item.price }}</p>
+                        </div>
+                    {% empty %}
+                        <p>No items found in this order.</p>
+                    {% endfor %}
+
+                    <hr>
+
+                    <!-- Shipping Status Form -->
+                    <form method="POST">
+                        {% csrf_token %}
+                        {% if not order.shipped %}
+                            <input type="hidden" name="shippingStatus" value="true">
+                            <button type="submit" class="btn btn-success w-100">Mark As Shipped</button>
+                        {% else %}
+                            <input type="hidden" name="shippingStatus" value="false">
+                            <button type="submit" class="btn btn-danger w-100">Mark As Not Shipped</button>
+                        {% endif %}
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

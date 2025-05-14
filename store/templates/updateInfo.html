@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- Header -->
+<header class="bg-dark py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">Update Info</h1>
+            <p class="lead">Manage your billing and shipping information</p>
+        </div>
+    </div>
+</header>
+
+<!-- Main Content -->
+<div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <form method="POST" action="{% url 'updateInfo' %}">
+                {% csrf_token %}
+
+                <!-- Billing Information -->
+                <div class="card shadow-sm mb-4">
+                    <div class="card-header bg-light">
+                        <strong>Billing Information</strong>
+                    </div>
+                    <div class="card-body">
+                        {% for field in form %}
+                            <div class="mb-3">
+                                {{ field.label_tag }}
+                                {{ field }}
+                                {% if field.help_text %}
+                                    <small class="form-text text-muted">{{ field.help_text }}</small>
+                                {% endif %}
+                                {% for error in field.errors %}
+                                    <div class="text-danger">{{ error }}</div>
+                                {% endfor %}
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <!-- Shipping Information -->
+                <div class="card shadow-sm mb-4">
+                    <div class="card-header bg-light">
+                        <strong>Shipping Information</strong>
+                    </div>
+                    <div class="card-body">
+                        {% for field in shipping_form %}
+                            <div class="mb-3">
+                                {{ field.label_tag }}
+                                {{ field }}
+                                {% if field.help_text %}
+                                    <small class="form-text text-muted">{{ field.help_text }}</small>
+                                {% endif %}
+                                {% for error in field.errors %}
+                                    <div class="text-danger">{{ error }}</div>
+                                {% endfor %}
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="btn btn-primary w-100">Update Profile</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

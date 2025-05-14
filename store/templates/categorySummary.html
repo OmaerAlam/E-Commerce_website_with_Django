@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block content %}
+<!-- Header -->
+<header class="bg-dark py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">Categories</h1>
+            <p class="lead text-white-50">Explore our wide range of product categories</p>
+        </div>
+    </div>
+</header>
+
+<!-- Categories Section -->
+<section class="py-5" style="background-color: #f8f9fa;">
+    <div class="container px-4 px-lg-5">
+        <div class="row g-4">
+            {% for category in categories %}
+            <div class="col-md-6">
+                <div class="card shadow-sm border-0 h-100 bg-white hover-shadow" style="transition: transform 0.2s;">
+                    <div class="card-body text-center py-4">
+                        <h4 class="fw-bold mb-0">
+                            <a href="{% url 'category' category %}" class="text-decoration-none text-primary">
+                                {{ category }}
+                            </a>
+                        </h4>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<style>
+    .hover-shadow:hover {
+        transform: scale(1.03);
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+    }
+</style>
+{% endblock %}
